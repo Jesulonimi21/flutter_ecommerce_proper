@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 //custom imports
 import 'package:flutter_ecommerce_proper/components/horizontal_listview.dart';
 import 'components/products.dart';
-
+import 'package:flutter_ecommerce_proper/pages/cart.dart';
 void main() {
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: Homepage()));
 }
@@ -18,18 +20,19 @@ class Homepage extends StatefulWidget {
 class HomePageState extends State<Homepage> {
   @override
   Widget build(BuildContext) {
-    Widget image_carousel=new Container(
-      height: 200.0 ,
+    Widget image_carousel = new Container(
+      height: 200.0,
       child: Carousel(
-      boxFit: BoxFit.cover,
-      images: [
+        boxFit: BoxFit.cover,
+        images: [
 //        AssetImage("images/m2.jpg"),
-        AssetImage("images/m1.jpeg"),
-        AssetImage("images/c1.jpg"),
-        AssetImage("images/w3.jpeg"),
-        AssetImage("images/w4.jpeg"),
+          AssetImage("images/m1.jpeg"),
+          AssetImage("images/c1.jpg"),
+          AssetImage("images/w3.jpeg"),
+          AssetImage("images/w4.jpeg"),
 
-      ],
+        ],
+        dotBgColor: Colors.transparent,
         dotSize: 4.0,
         indicatorBgPadding: 2.0,
         autoplay: true,
@@ -46,7 +49,10 @@ class HomePageState extends State<Homepage> {
             icon: Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Cart()));
+            },
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
@@ -104,11 +110,13 @@ class HomePageState extends State<Homepage> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>Cart()));
+              },
               child: ListTile(
-                title: Text("Categories"),
+                title: Text("Shopping Cart"),
                 leading: Icon(
-                  Icons.dashboard,
+                  Icons.shopping_cart,
                   color: Colors.red,
                 ),
               ),
@@ -157,13 +165,13 @@ class HomePageState extends State<Homepage> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              "Categories"
+                "Categories"
             ),),
           // Horizontal List view
           HorizontalList(),
           Padding(
             padding: EdgeInsets.all(15.0),
-            child:Text("Recent Products"),
+            child: Text("Recent Products"),
           ),
           Container(
             height: 320.0,
